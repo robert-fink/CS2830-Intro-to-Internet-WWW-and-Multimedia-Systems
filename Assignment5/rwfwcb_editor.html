@@ -1,0 +1,123 @@
+<!-- Robert Fink
+	 rwfwcb
+     CMP_SC 2830
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>My 1st Editor</title>
+    
+    <style>
+        *{
+            margin:0px;   
+        }
+        
+        .container{
+            height=200px;
+            width=250px;
+            margin-top:15px;
+            margin-left:15px;
+        }
+        
+        .input{
+            height:180px;
+            width:220px;
+        }
+        
+        .output{
+            float:right;
+            margin-right:600px;
+            height:450px;
+            width:400px;  
+        }
+        
+        #stage {
+            border-style: dotted;
+            border-color: lightgray;
+            height:390px;
+            width:400px;
+        }
+        
+        .buttons{
+            margin-left:15px;   
+        }
+        
+        button{
+            margin-left:10px;   
+        }
+       
+        #cssBox{
+ 
+        }
+        #htmlBox{
+               
+        }        
+    </style>
+    
+    <style id="the_style"></style>
+</head>  
+
+<body>
+    
+    
+    <div class="output" id="stage">
+           
+    </div>
+    <div class="container">
+        <textarea class="input" id="cssBox" placeholder="CSS..." ></textarea>    
+    </div>
+    <div class="container">
+        <textarea class="input" id="htmlBox" placeholder="HTML..." ></textarea>     
+    </div>
+    <div class="buttons">
+        <button type="button" onclick="html_click()">Launch</button>
+        <button type="button" onclick="clear_click()">Clear</button>
+        <button type="button" onclick="css_click()">Toggle</button>
+    </div>
+    
+    <script>
+        
+        var flag = 0;
+        function html_click(){
+            var string;
+            string = document.getElementById("htmlBox").value;
+            console.dir(string);
+            var stg = document.getElementById("stage");
+            document.getElementById("stage").innerHTML = string; 
+            console.dir(stg);
+        }
+        
+        function clear_click(){
+            document.getElementById("cssBox").value = "";
+            document.getElementById("htmlBox").value = "";
+            document.getElementById("stage").innerHTML = "";
+        }
+        
+      
+        function css_click(){
+            var design;
+            var x;
+    
+            if (flag==0)
+                flag=1;
+            else flag=0;
+            
+            if (flag==1){
+                design = document.getElementById("cssBox");
+                x = document.getElementById("the_style");
+                x.innerHTML = design.value;
+                console.dir(design);
+                console.dir(x);
+            }
+            
+            else {
+                document.getElementById("the_style").innerHTML="";
+
+            } 
+        }        
+    </script>
+</body>
+
+</html>
+

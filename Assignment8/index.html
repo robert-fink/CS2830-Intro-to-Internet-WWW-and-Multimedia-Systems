@@ -1,0 +1,152 @@
+<!-- Robert Fink
+	 rwfwcb
+     CMP_SC 2830
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> rwfwcb A8	</title>
+	<style>
+		#container {
+		font-family: calibri;
+		border: 1px solid #AAA;
+		border-radius: 5px;
+		width: 400px;
+		height: auto;
+		margin: 20px auto;
+		background-color: #EEE;
+	}
+	#container > h1 {
+		text-align: center;
+		margin-bottom: 0;
+	}
+		ul#navigation {
+	    list-style: none;
+	    padding: 0;
+	    text-align: center;
+	}
+		ul#navigation > li {
+		    display: inline-block;
+		    padding: 5px 20px;
+		    margin: 0 3px;
+		    border-radius: 3px;
+		    background-color: rgb(35, 112, 196);
+		    color: white;
+		    cursor: pointer;
+		}
+		#display {
+		    text-align: center;
+		    margin: 10px;
+		}
+		#display > ul {
+		    text-align: left;
+		    display: inline-block;
+		    padding: 0;
+		}
+	</style>
+</head>
+
+<body>
+
+
+	<div id="container">
+		<h1>Dinosaur Web Application</h1>
+
+		<ul id="navigation">
+			<li id="home" onclick="getInfo('home')">Home</li>
+			<li id="xml" onclick="getData('xml')">XML Dinos</li>
+			<li id="json" onclick="getData('json')">JSON Dinos</li>
+		</ul>
+
+		<div id="display">
+
+		</div>
+
+	</div>
+
+	<script>
+
+	function getInfo(clickID) {
+		// Loading feedback
+		document.getElementById("display").innerHTML = "Loading...";
+
+		var xmlHttp = new XMLHttpRequest();
+
+		xmlHttp.onload = function() {
+			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+				document.getElementById("display").innerHTML = xmlHttp.responseText;
+			  }
+		}
+
+		var reqURL = "https://cs2830.azurewebsites.net/a8/webservice.php?content=" + clickID;
+
+		xmlHttp.open("GET", reqURL, true);
+		xmlHttp.send();
+	}
+
+	function getData(clickID) {
+
+			var xmlHttp = new XMLHttpRequest();
+
+			// Loading feedback
+			document.getElementById("display").innerHTML = "Loading...";
+
+			if (clickID == "json"){
+				xmlHttp.onload = function() {
+						if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+
+							console.log(xmlHttp.responseText);
+							//document.getElementById("display").innerHTML = xmlHttp.responseText;
+
+							//Get the response text
+							var response = xmlHttp.responseText;
+
+							console.dir(response);
+
+							// JSON.parse converts the JSON string into a JavaScript object
+							response = JSON.parse(response);
+
+							document.getElementById("display").innerHTML = "<ul>";
+							var i;
+							for (i=0; i<=response.length; i++){
+								document.getElementById("display").innerHTML +=  "<li>" + response[i].name + " was a " + response[i].diet + "</li>";
+							}
+							document.getElementById("display").innerHTML = '</ul>';
+
+						}
+				}
+			}
+
+			if (clickID == "xml"){
+				xmlHttp.onload = function() {
+						if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+
+							// Get XML Document
+							var xmlDoc = xmlHttp.responseXML;
+
+							// Get div object
+							var divObj = document.getElementById('display');
+
+							// Build output by parsing XML
+							var dinosaur = xmlDoc.getElementsByTagName('dinosaur');
+
+							console.dir(dinosaur);
+
+							divObj.innerHTML = "<ul>";
+							for (i = 0; i <= dinosaur.length; i++) {
+								divObj.innerHTML += "<li>" + dinosaur[i].childNodes[1].innerHTML + " lived during the " + dinosaur[i].childNodes[7].innerHTML + "</li>";
+							}
+							divObj.innerHTML = "</ul>";
+						}
+					}
+			}
+
+			var reqURL = "http://cs2830.azurewebsites.net/a8/webservice.php?content=data&format=" + clickID;
+
+			xmlHttp.open("GET", reqURL, true);
+			xmlHttp.send();
+	}
+	</script>
+</body>
+</html>

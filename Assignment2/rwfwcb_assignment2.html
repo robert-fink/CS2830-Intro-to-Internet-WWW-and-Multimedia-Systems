@@ -1,0 +1,64 @@
+<!-- Robert Fink
+	 rwfwcb
+	 Assignment 2 Floating Multi-Column Layouts
+	 09/08/2015
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> rwfwcb Assignment 2	</title>
+
+	<style>
+		.group{
+			width: 900px;
+			border: 2px solid lightgray;
+			margin: auto;
+		}
+		.group:after{
+			content: "";
+			display: table;
+			clear: both;
+		}
+		.columns{
+			padding: 10px;
+			margin: 5px;
+			text-indent: 10px;
+		}
+		#left{
+			width: 200px;
+			float: left;
+			background-color: coral;
+		}
+		#middle{
+			width: 400px;
+			float: left;
+			background-color: beige;
+		}
+		#right{
+			width: 210px;
+			float:right;
+			background-color: lightblue;
+		}
+	</style>
+</head>  
+
+<body>
+	<div class="group">
+		<div class= "columns" id="left">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel venenatis leo. Suspendisse lectus diam, interdum quis massa id, tempus feugiat urna. Ut pellentesque tempor dui sed volutpat. Ut mattis odio non turpis fringilla, et ornare tellus ultricies. Maecenas ac odio sit amet justo auctor dictum. Vestibulum gravida massa id nisi aliquet vehicula id eu dolor. Nulla vel luctus ante. Duis luctus sem volutpat pulvinar volutpat. Curabitur dolor enim, gravida consequat tempor eu, tincidunt nec tortor.
+		</div>
+
+
+		<div class= "columns" id= "middle">
+			Nulla sed erat in nisi maximus pulvinar non ultrices sapien. Nam facilisis eros vel sapien tempor, id sagittis enim pharetra. Phasellus euismod in nisi vel eleifend. Mauris nec quam ligula. Pellentesque orci velit, euismod sed fringilla eget, hendrerit in arcu. Etiam consectetur odio ligula, id varius metus semper nec. Praesent eu lacinia nibh, sit amet tristique elit. Duis ut risus sit amet nunc finibus consequat auctor feugiat velit. Cras et ligula eu metus porta egestas. Fusce vulputate ut risus sed consequat. Morbi non placerat nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti. Donec cursus a magna non hendrerit. Sed dapibus sem sit amet velit maximus iaculis. Nullam lacinia sapien id orci lobortis facilisis.
+		</div>
+
+		<div class= "columns" id="right">
+			Proin nec elit egestas, laoreet elit quis, consectetur purus. Etiam vulputate, turpis id fringilla efficitur, felis diam commodo eros, at euismod dolor lacus at magna. Maecenas et eleifend erat. Etiam vulputate egestas finibus. Etiam ultrices nunc a ante suscipit, nec placerat turpis pretium. Etiam vitae faucibus massa. Morbi porttitor nisi non metus suscipit, ut porttitor risus laoreet. Ut faucibus ornare odio vel blandit. Suspendisse eget efficitur arcu, vitae porttitor nisi. Donec condimentum tellus id fringilla feugiat.
+		</div>
+	</div>
+</body>
+
+</html>
